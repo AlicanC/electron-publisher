@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import asar from 'asar';
 import temp from 'temp';
-import utils from './utils';
+import * as utils from './utils';
 import Nuspec from './Nuspec.js';
 import NuspecMetadata from './NuspecMetadata.js';
 
@@ -134,7 +134,7 @@ export default class SquirrelPackager {
   }
 
   async packRelease(nuspec) {
-    const nupkgPath = path.join(this.nugetOutput, nuspec.metadata.id + '-' + nuspec.metadata.version + '.nupkg');
+    const nupkgPath = path.join(this.nugetOutput, nuspec.metadata.id + '.' + nuspec.metadata.version + '.nupkg');
     const cmd = path.resolve(__dirname, '..', 'bin', 'Squirrel.exe');
     const args = [
       '--releasify', nupkgPath,
